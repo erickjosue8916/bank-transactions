@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "target": "es2020",
+        "module": "commonjs",
+        "lib": [
+            "ES2020"
+        ],
+        "types": [
+            "reflect-metadata"
+        ],
+        "outDir": "./lib",
+        "rootDir": "./src",
+        "removeComments": true,
+        "noEmit": true,
+        "noImplicitAny": false,
+        "noUnusedLocals": false,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "declarationMap": true,
+        "declaration": true,
+        "emitDecoratorMetadata": true,
+        "baseUrl": "src",
+        "paths": { },
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "compileOnSave": true
+}
