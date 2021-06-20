@@ -17,7 +17,14 @@ export class UserService implements IUserService {
     return user
   }
 
-  async update(_user: any): Promise<any> {}
-  async delete(_user: any): Promise<any> {}
+  async update(_user: any): Promise<any> {
+    _user.save()
+    return _user
+  }
+
+  async delete(_user: any): Promise<any> {
+    entities.Users.delete(_user.id)
+    return _user
+  }
   async get(_id: string): Promise<any> {}
 }
