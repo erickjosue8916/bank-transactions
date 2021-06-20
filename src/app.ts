@@ -1,7 +1,6 @@
-import { container, TYPES, MainLoader, Loader } from './loaders'
-import { environment } from "./config/environment"
-import { EnvironmentDefinition } from "./repositories/interfaces";
+import { container, TYPES  } from './loaders'
+import { Loader } from "./repositories/interfaces";
 
 const loader = container.get<Loader>(TYPES.MainLoader)
 
-loader.initialize(environment as EnvironmentDefinition)
+loader.initialize()
