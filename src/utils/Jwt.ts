@@ -29,4 +29,13 @@ export class Jwt {
     }
     return result
   }
+
+  static async verify (token) {
+    try {
+      const payload = await jwt.verify(token, env.jwt.secretKey)
+      return payload
+    } catch (error) {
+      return null
+    }
+  }
 }

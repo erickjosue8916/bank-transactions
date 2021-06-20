@@ -1,10 +1,9 @@
 import { Router } from 'express'
-import { inject, injectable } from "inversify";
-import "reflect-metadata";
-import { ICustomerController, ICustomerValidation } from "./index";
-import { ApplicationRoute } from "../../../repositories/interfaces"
-import { TYPES }  from "./types";
-
+import { inject, injectable } from 'inversify'
+import 'reflect-metadata'
+import { ICustomerController, ICustomerValidation } from './index'
+import { ApplicationRoute } from '../../../repositories/interfaces'
+import { TYPES } from './types'
 
 @injectable()
 export class CustomerRouter implements ApplicationRoute {
@@ -12,24 +11,24 @@ export class CustomerRouter implements ApplicationRoute {
   private customerValidations: ICustomerValidation
 
   public constructor(
-    @inject (TYPES.CustomerController) customerController: ICustomerController,
-    @inject (TYPES.CustomerValidation) customerValidations: ICustomerValidation
+    @inject(TYPES.CustomerController) customerController: ICustomerController,
+    @inject(TYPES.CustomerValidation) customerValidations: ICustomerValidation,
   ) {
-    
     this.customerController = customerController
     this.customerValidations = customerValidations
   }
 
   public getRouter(): Router {
     const router = Router()
-    router.route('/')
+    router
+      .route('/')
       .get(this.customerController.list)
-      .post(
-        this.customerValidations.create,
-        this.customerController.create)
+      .post(this.customerValidations.create, this.customerController.create)
 
-    router.route('/:customerId')
-      .get(this.customerController.getById)
+    router.use('/:customerId', this.customerValidations.get)
+    router
+      .route('/:customerId')
+      .get(this.customerController.get)
       .put(this.customerController.update)
     return router
   }
