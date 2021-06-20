@@ -6,8 +6,8 @@ import { environment } from '../../config/environment';
 
 @injectable()
 export class DatabaseLoader implements Loader{
-  public initialize(): void {
+  public async initialize(): Promise<void> {
     const bankDBConfig = environment.database.bank
-    BankDB.initializeConnection(bankDBConfig)
+    await BankDB.initializeConnection(bankDBConfig)
   }
 }

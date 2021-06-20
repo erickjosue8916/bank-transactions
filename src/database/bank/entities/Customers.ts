@@ -1,7 +1,7 @@
 import { Column, BaseEntity,  Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { BankAccounts } from "./BankAccounts";
 import { Documents } from "./Documents";
-
+import dayjs from 'dayjs'
 @Entity("Customers")
 export class Customers extends BaseEntity{
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
@@ -16,11 +16,11 @@ export class Customers extends BaseEntity{
   @Column("varchar", { name: "phoneNumber", length: 100 })
   phoneNumber: string;
 
-  @Column("int", { name: "createAt", nullable: true, unsigned: true })
-  createAt: number | null;
+  @Column("datetime", { name: "createdAt" })
+  createdAt: Date | null = new Date(dayjs().valueOf());
 
-  @Column("int", { name: "dateBirth", nullable: true, unsigned: true })
-  dateBirth: number | null;
+  @Column("date", { name: "dateBirth", nullable: true})
+  dateBirth: Date | null;
 
   @Column("varchar", { name: "email", length: 100 })
   email: string;

@@ -8,46 +8,27 @@ export class UserValidation extends ApiValidation implements IUserValidation{
   private requiredFields = ['firstName', 'lastName']
   public create = [
     ...this.checkRequiredData(this.requiredFields),
-    
-    // final response errors
-    this.validationResponse,
-
-    // remove all data that do not match with validations
-    this.onlyMatchData
+    this.validationResponse,  // final response errors
+    this.onlyMatchData, // remove all data that do not match with validations
   ]
   public list = [
-    
-    // final response errors
-    this.validationResponse,
-
-    // remove all data that do not match with validations
-    this.onlyMatchData
+    this.validationResponse,  // final response errors
+    this.onlyMatchData, // remove all data that do not match with validations
   ]
 
   public get = [
-    
-    // final response errors
-    this.validationResponse,
-
-    // remove all data that do not match with validations
-    this.onlyMatchData
+    this.validationResponse,  // final response errors
+    this.onlyMatchData, // remove all data that do not match with validations
   ]
 
   public update = [
-    
-    // final response errors
-    this.validationResponse,
-
-    // remove all data that do not match with validations
-    this.onlyMatchData
+    ...this.checkNotEmptyData(this.requiredFields),
+    this.validationResponse,  // final response errors
+    this.onlyMatchData, // remove all data that do not match with validations
   ]
 
   public delete = [
-    
-    // final response errors
-    this.validationResponse,
-
-    // remove all data that do not match with validations
-    this.onlyMatchData
+    this.validationResponse,  // final response errors
+    this.onlyMatchData, // remove all data that do not match with validations
   ]
 }

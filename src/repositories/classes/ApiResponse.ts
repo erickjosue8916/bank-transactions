@@ -1,50 +1,50 @@
 import { HttpStatusCode as StatusCode } from "../enums/httpStatusCode";
-
+import { Response } from 'express'
 export class ApiResponse {
-  public success = (res, data) => {
+  public success = (res, data): Promise<Response> => {
     const response = data
-    res.status(StatusCode.OK).json(response)
+    return res.status(StatusCode.OK).json(response)
   }
   
-  public successCreated = (res, data) => {
+  public successCreated = (res, data): Promise<Response> => {
     const response = data
-    res.status(StatusCode.CREATED).json(response)
+    return res.status(StatusCode.CREATED).json(response)
   }
   
-  public notFound = (res, error) => {
+  public notFound = (res, error): Promise<Response> => {
     const status = StatusCode.NOT_FOUND
     const response = { code: 1, status, name: 'Not Found', error }
-    res.status(status).json(response)
+    return res.status(status).json(response)
   }
   
   public badRequest = (
     res,
     error = `bad request`
-  ) => {
+  ): Promise<Response> => {
     const status = StatusCode.BAD_REQUEST
     const response = { code: 3, status, name: 'Bad Request', error }
-    res.status(status).json(response)
+    return res.status(status).json(response)
   }
   
   public unauthorized = (
     res,
     error = `invalid access to resource`
-  ) => {
+  ): Promise<Response> => {
     const status = StatusCode.UNAUTHORIZED
     const response = { code: 2, status, name: 'Unauthorized', error }
-    res.status(status).json(response)
+    return res.status(status).json(response)
   }
   
-  public forbidden = (res, error = `insufficient permissions`) => {
+  public forbidden = (res, error = `insufficient permissions`): Promise<Response> => {
     const status = StatusCode.FORBIDDEN
     const response = { code: 7, status, name: 'Forbidden', error }
-    res.status(status).json(response)
+    return res.status(status).json(response)
   }
   
   public internalServerError = (
     res,
     error = `internal Server Error`
-  ) => {
+  ): Promise<Response> => {
     const status = StatusCode.INTERNAL_SERVER_ERROR
     const response = {
       code: 6,
@@ -52,19 +52,19 @@ export class ApiResponse {
       name: 'Internal Server Error',
       error
     }
-    res.status(status).json(response)
+    return res.status(status).json(response)
   }
   
-  public dataValidationFailed = (res, error) => {
+  public dataValidationFailed = (res, error): Promise<Response> => {
     const status = StatusCode.DATA_VALIDATION_FAILED
     const response = { code: 4, status, name: 'invalid request data', error }
-    res.status(status).json(response)
+    return res.status(status).json(response)
   }
   
-  public noContent = (res, error = `No Content to Show`) => {
+  public noContent = (res, error = `No Content to Show`): Promise<Response> => {
     const status = StatusCode.NO_CONTENT
     const response = { code: 5, status, name: 'No Content', error }
-    res.status(status).json(response)
+    return res.status(status).json(response)
   }
 }
 
