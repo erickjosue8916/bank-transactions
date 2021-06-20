@@ -31,8 +31,10 @@ export class AccountController extends ApiController implements IAccountControll
     return this.response.success(res, customer)
   }
 
-  create = async (req: Request, res: Response, _next: NextFunction): Promise<Response> => {
+  create = async (req: any, res: Response, _next: NextFunction): Promise<Response> => {
     try {
+      const { _customer } = req
+      req.body.customerId = _customer.id
       const result = await this.accountService.create(req.body)
       return this.response.success(res, result)
     } catch (error) {

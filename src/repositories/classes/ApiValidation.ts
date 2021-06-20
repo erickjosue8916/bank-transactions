@@ -31,6 +31,7 @@ export class ApiValidation {
 
   public onlyMatchData = (req, _res, next) => {
     // set valid data to body
+    // console.log(req.body)
     req.body = matchedData(req, { locations: ['body'] })
     return next()
   }
