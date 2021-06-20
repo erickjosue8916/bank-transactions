@@ -1,13 +1,12 @@
 import { Container } from 'inversify'
 import { TYPES } from './types'
-import { DB, Server, Express, Mongoose } from './index'
-import { Loader } from "./mainLoader.interface";
-import { MainLoader } from "./MainLoader";
-
+import { Express, DatabaseLoader } from './index'
+import { interfaces } from "../repositories";
+import { MainLoader } from "./mainLoader";
 const container = new Container()
 
-container.bind<DB>(TYPES.Mongoose).to(Mongoose)
-container.bind<Server>(TYPES.Express).to(Express)
-container.bind<Loader>(TYPES.MainLoader).to(MainLoader)
+container.bind<interfaces.Loader>(TYPES.Database).to(DatabaseLoader)
+container.bind<interfaces.Loader>(TYPES.Express).to(Express)
+container.bind<interfaces.Loader>(TYPES.MainLoader).to(MainLoader)
 
 export { container }

@@ -1,5 +1,5 @@
 export const TYPES = {
   Express: Symbol('Express'),
-  Mongoose: Symbol('Mongoose'),
+  Database: Symbol('Database'),
   MainLoader: Symbol('MainLoader')
 }

@@ -1,21 +1,20 @@
 
 import { inject, injectable } from 'inversify'
 import 'reflect-metadata'
-import { TYPES, Server, DB } from "./index"
-import { EnvironmentDefinition } from '../repositories/interfaces'
-import { Loader } from "./mainLoader.interface";
+import { TYPES } from "./index"
+import { Loader } from '../repositories/interfaces'
 
 @injectable()
 export class MainLoader implements Loader {
-  public environment: any
 
   public constructor(
-    @inject(TYPES.Express) private app: Server,
-    @inject(TYPES.Mongoose) private mongo: DB
+    @inject(TYPES.Express) private app: Loader,
+    @inject(TYPES.Database) private storage: Loader
   ) { }
 
-  public initialize(env: EnvironmentDefinition): void {
-    this.app.listen(env.port)
-    this.mongo.initialize(env.mongo.url)
+  public initialize(): void {
+    
+    this.storage.initialize()
+    this.app.initialize()
   }
 }

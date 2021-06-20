@@ -5,20 +5,30 @@ import 'reflect-metadata'
 import cors from 'cors'
 import morgan from "morgan"
 import { Api } from "../../api";
-import { HttpStatusCode } from "../../repositories/enums";
-import { Server } from './express.interface'
+import { enums, interfaces } from "../../repositories";
+import { environment } from "../../config/environment";
+import { error, notFound } from '../../middlewares/index'
 
 @injectable()
-export class Express implements Server{
+export class Express implements interfaces.Loader{
   public app: express.Application
 
   constructor() {
     this.app = expressApp()
+  }
+
+  public initialize() {
     this.initializeMiddlewares()
     this.setHealthCheck()
     const api = new Api()
+
+    // set api router
     this.app.use('/api', api.getRouter())
-    this.app.use(this.notFound)
+
+    // set error handler
+    this.app.use(notFound)
+    this.app.use(error)
+    this.listen(environment.port)
   }
 
   private setHealthCheck() {
@@ -37,18 +47,9 @@ export class Express implements Server{
     this.app.use(morgan('dev'))
   }
 
-  public listen(port: number) {
-    console.log(`server running on port ${port}`)
+  private listen(port: number) {
     this.app.listen(port, () => {
       console.log(`server running on port ${port}`)
-    })
-  }
-
-  private notFound (_req, res, _next): express.Response {
-    return res.json({
-      code: 1,
-      status: HttpStatusCode.NOT_FOUND,
-      error: 'un'
     })
   }
 }
