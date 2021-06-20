@@ -1,10 +1,10 @@
-import { injectable } from "inversify";
-import "reflect-metadata";
-import { IUserService  } from "./index";
-import { entities } from "../../../database/bank";
+import { injectable } from 'inversify'
+import 'reflect-metadata'
+import { IUserService } from './index'
+import { entities } from '../../../database/bank'
 
 @injectable()
-export class UserService implements IUserService{
+export class UserService implements IUserService {
   async list(_query: any): Promise<any> {
     const users = entities.Users.find()
     return users
@@ -17,7 +17,7 @@ export class UserService implements IUserService{
     return user
   }
 
-  async update(_user: any): Promise<any> {
-    
-  }
+  async update(_user: any): Promise<any> {}
+  async delete(_user: any): Promise<any> {}
+  async get(_id: string): Promise<any> {}
 }
