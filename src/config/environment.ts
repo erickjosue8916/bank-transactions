@@ -18,7 +18,10 @@ export const environment = {
     bank: bankDbConfig
   },
   jwt: {
-    secretKey: process.env.JWT_SECRET_KEY || `123`
+    secretKey: process.env.JWT_SECRET_KEY || `123`,
+    iss: process.env.APP_JWT_ISS || 'passport.domain.com', // passport.domain.com
+    aud: process.env.APP_JWT_AUD || 'domain.com', // domain.com
+    expiration: process.env.APP_JWT_EXPIRATION || 3600 // 3600 1 hour
   },
   crypto: {
     salts: process.env.CRYPT_SALTS || 10

@@ -36,7 +36,7 @@ export class ApiValidation {
 
   public checkRequiredData = (fields: string[]) => {
     return fields.map((key) => {
-      return check(key, `Required field ${key} not found or is empty`)
+      return check(key, `Required field <<${key}>> not found or is empty`)
         .exists()
         .notEmpty()
     })

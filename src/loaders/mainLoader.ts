@@ -12,9 +12,9 @@ export class MainLoader implements Loader {
     @inject(TYPES.Database) private storage: Loader
   ) { }
 
-  public initialize(): void {
+  public async initialize(): Promise<void> {
     
-    this.storage.initialize()
+    await this.storage.initialize()
     this.app.initialize()
   }
 }

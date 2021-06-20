@@ -2,17 +2,16 @@ import { injectable } from 'inversify'
 import 'reflect-metadata'
 import { ICustomersService } from './index'
 import { entities } from '../../../database/bank'
-import dayjs from "dayjs";
 
 @injectable()
 export class CustomerService implements ICustomersService {
   async list(_query: any): Promise<any> {
-    const customers = entities.Customers.find()
+    const customers = await entities.Customers.find()
     return customers
   }
 
   async get(id: string): Promise<any> {
-    const customer = entities.Customers.findOne(id)
+    const customer = await entities.Customers.findOne(id)
     return customer
   }
 
@@ -26,12 +25,12 @@ export class CustomerService implements ICustomersService {
   }
 
   async update(customer: any): Promise<any> {
-    customer.save()
+    await customer.save()
     return customer
   }
 
   async delete(customer: any): Promise<any> {
-    entities.Customers.delete(customer.id)
+    await entities.Customers.delete(customer.id)
     return customer
   }
   
