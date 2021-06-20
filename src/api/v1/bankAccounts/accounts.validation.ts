@@ -49,7 +49,7 @@ export class AccountsValidations extends ApiValidation implements IAccountValida
 
   private exist = async (accountId, { req }) => {
     const account = await this.accountService.get(accountId)
-    if (!account) throw new Error('customer not found')
+    if (!account) throw new Error('account not found')
     req._account = account
     return true
   }
