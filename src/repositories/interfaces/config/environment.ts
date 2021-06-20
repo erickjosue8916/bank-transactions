@@ -1,9 +1,11 @@
-import { MongooseConnection } from './mongooseConnection'
+import { DatabaseConfig } from '..'
 import { ENVIRONMENTS } from '../../enums'
 
 export interface EnvironmentDefinition {
   node_env: ENVIRONMENTS
   ip: string
   port: number
-  mongo: MongooseConnection
+  database: {
+    bank: DatabaseConfig
+  }
 }
