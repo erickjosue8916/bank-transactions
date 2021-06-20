@@ -46,7 +46,7 @@ export class CustomerValidations extends ApiValidation implements ICustomerValid
     this.onlyMatchData, // remove all data that do not match with validations
   ]
 
-  private exist = async (customerId, { req }) => {
+  public exist = async (customerId, { req }) => {
     const customer = await this.customerService.get(customerId)
     if (!customer) throw new Error('customer not found')
     req._customer = customer
@@ -55,9 +55,7 @@ export class CustomerValidations extends ApiValidation implements ICustomerValid
 
   public get = [
     ...this.validateAccess,
-    param(`customerId`).custom(this.exist),
-    this.validationResponse, // final response errors
-    this.onlyMatchData, // remove all data that do not match with validations
+    param(`customerId`).custom(this.exist)
   ]
 
   public update = [
