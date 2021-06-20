@@ -19,5 +19,8 @@ export const environment = {
   },
   jwt: {
     secretKey: process.env.JWT_SECRET_KEY || `123`
+  },
+  crypto: {
+    salts: process.env.CRYPT_SALTS || 10
   }
 }
