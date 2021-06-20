@@ -2,17 +2,17 @@ import { inject, injectable } from "inversify";
 import "reflect-metadata";
 import { Request, Response, NextFunction } from 'express'
 
-import { UserActions } from "./userActions.interface";
+import { IUserController } from "./user.controller.interface";
 import { TYPES } from "./types";
-import { UserActionsService } from "./index";
+import { IUserService } from "./index";
 
 
 @injectable()
-export class UserController implements UserActions{
-  private _userService: UserActionsService
+export class UserController implements IUserController{
+  private _userService: IUserService
 
   public constructor(
-    @inject(TYPES.UserService) userService: UserActionsService
+    @inject(TYPES.UserService) userService: IUserService
   ) {
     
     this._userService = userService

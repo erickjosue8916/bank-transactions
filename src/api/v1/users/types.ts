@@ -1,6 +1,6 @@
 export const TYPES = {
   UserService: Symbol.for('UserService'),
   UserController: Symbol.for('UserController'),
-  UserModel: Symbol.for('UserModel'),
+  UserValidation: Symbol.for('UserValidation'),
   UserRouter: Symbol.for('UserRouter')
 }
