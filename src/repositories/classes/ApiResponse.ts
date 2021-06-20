@@ -17,7 +17,7 @@ export class ApiResponse {
     res.status(status).json(response)
   }
   
-  badRequest = (
+  public badRequest = (
     res,
     error = `bad request`
   ) => {

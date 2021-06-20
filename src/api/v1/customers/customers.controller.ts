@@ -2,25 +2,26 @@ import { inject, injectable } from "inversify";
 import "reflect-metadata";
 import { Request, Response, NextFunction } from 'express'
 
-import { IUserController } from "./user.controller.interface";
-import { TYPES } from "./types";
-import { IUserService } from "./index";
+import { ICustomerController } from "./customers.controller.interface";
 import { ApiController } from "../../../repositories/classes";
+import { TYPES } from "./types";
+import { ICustomersService } from "./index";
+
 
 @injectable()
-export class UserController extends ApiController implements IUserController{
-  private _userService: IUserService
+export class CustomerController extends ApiController implements ICustomerController{
+  private customerService: ICustomersService
 
   public constructor(
-    @inject(TYPES.UserService) userService: IUserService
+    @inject(TYPES.CustomerService) userService: ICustomersService
   ) {
     super()
-    this._userService = userService
+    this.customerService = userService
   }
 
 
   list = async (_req: Request, res: Response, _next: NextFunction): Promise<Response> => {
-    const result = await this._userService.list(_req.query)
+    const result = await this.customerService.list(_req.query)
     return res.json(result)
   }
 
@@ -33,7 +34,7 @@ export class UserController extends ApiController implements IUserController{
   }
 
   create = async (_req: Request, res: Response, _next: NextFunction): Promise<Response> => {
-    return res.json({ message: `[POST] CREATE USER` })
+    return res.json(_req.body)
   }
 
   update = async (_req: Request, res: Response, _next: NextFunction): Promise<Response> => {

@@ -1,19 +1,14 @@
-export interface ResponseApiOk {}
+export interface PaginatedResponse<T> {
+  items: T[]
+  page: number
+  limit: number
+  total_items: number
+  total_pages: number
+}
 
-export interface paginatedResponse<T> {
+export interface ErrorResponse {
+  code: number
   status: number
-  data: T
-}
-
-export interface resourceCreated<T> {
-  data: T
-}
-
-export interface resourceUpdated<T> {
-  data: T
-  previous_values: T
-}
-
-export interface resourceDeleted<T> {
-  data: T[]
+  name: string
+  error: string | string[]
 }

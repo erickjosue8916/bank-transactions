@@ -1,2 +1,2 @@
 import { ApiServiceCrud } from '../../../repositories/interfaces'
-export interface IUserService extends ApiServiceCrud {}
+export interface ICustomersService extends ApiServiceCrud {}
