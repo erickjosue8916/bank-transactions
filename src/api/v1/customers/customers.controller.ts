@@ -33,8 +33,14 @@ export class CustomerController extends ApiController implements ICustomerContro
     return res.json({ message: `[GET] USER` })
   }
 
-  create = async (_req: Request, res: Response, _next: NextFunction): Promise<Response> => {
-    return res.json(_req.body)
+  create = async (req: Request, res: Response, _next: NextFunction): Promise<Response> => {
+    try {
+      const result = await this.customerService.create(req.body)
+      return this.response.success(res, result)
+    } catch (error) {
+      console.log(error)
+      return this.response.internalServerError(res, error)
+    }
   }
 
   update = async (_req: Request, res: Response, _next: NextFunction): Promise<Response> => {

@@ -1,4 +1,5 @@
 import { Column, BaseEntity,  Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import dayjs from "dayjs";
 import { UserScopeAccess } from "./UserScopeAccess";
 
 @Entity("Users")
@@ -21,6 +22,9 @@ export class Users extends BaseEntity{
     default: () => "'ACTIVE'",
   })
   status: "ACTIVE" | "INACTIVE" | "DELETED";
+
+  @Column("datetime", { name: "createdAt", default: ()=> dayjs().format() })
+  createdAt: Date | null;
 
   @OneToMany(() => UserScopeAccess, (userScopeAccess) => userScopeAccess.user)
   userScopeAccesses: UserScopeAccess[];

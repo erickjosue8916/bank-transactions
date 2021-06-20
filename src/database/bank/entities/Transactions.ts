@@ -8,9 +8,12 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import dayjs from 'dayjs'
+
 import { TransactionTypes } from "./TransactionTypes";
 import { BankAccounts } from "./BankAccounts";
 import { Transference } from "./Transference";
+
 
 @Index("Transactions_FK", ["transactionTypeId"], {})
 @Index("Transactions_FK_1", ["bankAccountId"], {})
@@ -31,8 +34,8 @@ export class Transactions extends BaseEntity{
   @Column("varchar", { name: "description", nullable: true, length: 100 })
   description: string | null;
 
-  @Column("int", { name: "createdAt", nullable: true, unsigned: true })
-  createdAt: number | null;
+  @Column("datetime", { name: "createdAt" })
+  createdAt: Date | null = new Date(dayjs().valueOf());
 
   @Column("enum", {
     name: "status",

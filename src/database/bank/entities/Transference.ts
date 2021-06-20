@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 import { BankAccounts } from "./BankAccounts";
 import { Transactions } from "./Transactions";
+import dayjs from "dayjs";
 
 @Index("Transference_FK", ["fromBankAccountId"], {})
 @Index("Transference_FK_1", ["toBankAccountId"], {})
@@ -40,11 +41,11 @@ export class Transference extends BaseEntity{
   @Column("double", { name: "charge", precision: 22, default: () => "'0'" })
   charge: number;
 
-  @Column("double", { name: "total", precision: 22, default: () => "'0'" })
+  @Column("double", { name: "total", precision: 22})
   total: number;
 
-  @Column("int", { name: "createdAt", nullable: true, unsigned: true })
-  createdAt: number | null;
+  @Column("datetime", { name: "createdAt" })
+  createdAt: Date | null = new Date(dayjs().valueOf());
 
   @Column("enum", {
     name: "status",

@@ -12,6 +12,7 @@ import { Customers } from "./Customers";
 import { BankAccountTypes } from "./BankAccountTypes";
 import { Transactions } from "./Transactions";
 import { Transference } from "./Transference";
+import dayjs from "dayjs";
 
 @Index("BankAccounts_FK", ["customerId"], {})
 @Index("BankAccounts_FK_1", ["accountTypeId"], {})
@@ -23,8 +24,8 @@ export class BankAccounts extends BaseEntity {
   @Column("varchar", { name: "name", nullable: true, length: 100 })
   name: string | null;
 
-  @Column("int", { name: "createAt", nullable: true, unsigned: true })
-  createAt: number | null;
+  @Column("datetime", { name: "createdAt" })
+  createdAt: Date | null = new Date(dayjs().valueOf());
 
   @Column("int", { name: "customerId" })
   customerId: number;

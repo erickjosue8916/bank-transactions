@@ -2,29 +2,37 @@ import { injectable } from 'inversify'
 import 'reflect-metadata'
 import { ICustomersService } from './index'
 import { entities } from '../../../database/bank'
+import dayjs from "dayjs";
 
 @injectable()
 export class CustomerService implements ICustomersService {
   async list(_query: any): Promise<any> {
-    const users = entities.Users.find()
-    return users
+    const customers = entities.Customers.find()
+    return customers
   }
 
-  async create(_payload: any): Promise<any> {
-    const user = new entities.Users()
-
-    await user.save()
-    return user
+  async get(id: string): Promise<any> {
+    const customer = entities.Customers.findOne(id)
+    return customer
   }
 
-  async update(_user: any): Promise<any> {
-    _user.save()
-    return _user
+  async create(payload: any): Promise<any> {
+    const customer = new entities.Customers()
+    Object.assign(customer, payload)
+    customer.status = `ACTIVE`
+
+    await customer.save()
+    return customer
   }
 
-  async delete(_user: any): Promise<any> {
-    entities.Users.delete(_user.id)
-    return _user
+  async update(customer: any): Promise<any> {
+    customer.save()
+    return customer
   }
-  async get(_id: string): Promise<any> {}
+
+  async delete(customer: any): Promise<any> {
+    entities.Customers.delete(customer.id)
+    return customer
+  }
+  
 }

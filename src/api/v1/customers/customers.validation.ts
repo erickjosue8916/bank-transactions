@@ -27,9 +27,7 @@ export class CustomerValidations extends ApiValidation implements ICustomerValid
         const passEncrypt = await bcrypt.hash(value, Number(environment.crypto.salts))
         return passEncrypt
       }),
-      body('dateBirth').isDate({format: `YYYY-MM-DD`}).withMessage(`Format required for date fields: YYYY-MM-DD`).customSanitizer((value) => {
-        return dayjs(value).valueOf()
-      }),
+      body('dateBirth').isDate({format: `YYYY-MM-DD`}).withMessage(`Format required for date fields: YYYY-MM-DD`),
     // final response errors
     this.validationResponse,
 
