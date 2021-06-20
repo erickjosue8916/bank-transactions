@@ -40,5 +40,12 @@ export class ApiValidation {
         .exists()
         .notEmpty()
     })
-  } 
+  }
+  
+  public checkNotEmptyData = (fields: string[]) => {
+    return fields.map((key) => {
+      return check(key, `Field ${key} is empty`)
+        .notEmpty()
+    })
+  }
 }
