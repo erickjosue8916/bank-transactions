@@ -10,7 +10,7 @@
     "lint": "eslint ./src --ext .ts",
     "lint-and-fix": "eslint ./src --ext .ts --fix",
     "build": "tsc",
-    "start": "npm run build && node -r dotenv/config ./lib/app.js",
+    "start": "ts-node -r dotenv/config ./src/app.ts",
     "dev": "nodemon --exec ts-node -r dotenv/config ./src/app.ts",
     "commit": "cz",
     "release": "standard-version"
