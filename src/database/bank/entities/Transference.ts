@@ -50,7 +50,7 @@ export class Transference extends BaseEntity{
   @Column("enum", {
     name: "status",
     enum: ["SUCCESS", "DRAFT", "CANCELLED", "REFUNDED"],
-    default: () => "'DRAFT'",
+    default: () => "'SUCCESS'",
   })
   status: "SUCCESS" | "DRAFT" | "CANCELLED" | "REFUNDED";
 

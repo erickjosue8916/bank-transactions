@@ -47,23 +47,42 @@ export class TransactionController extends ApiController implements ITransaction
 
   transfer = async (req: any, res: Response, _next: NextFunction): Promise<Response> => {
     try {
+      const account = req._account
+      const destinationAccount = req.destinationAccount
+
+      const percentageCharge = 2 // 2% => 0.02
+      const data = req.body
+      let charge = 0
+      if (account.customerId  !== destinationAccount.customerId) {
+        charge = Number((data.amount / 100 * percentageCharge).toFixed(2))
+      }
+      
+      const total = data.amount + charge
+
+      // WITHDRAW ID
+      let transferencePayload = {
+        ...data,
+        fromBankAccountId: account.id,
+        charge,
+        total
+      }
       let withdrawData = {
-        ...req.body,
-        transactionTypeId: 4
+        description: `transference to account: ${destinationAccount.id}`,
+        amount: total,
+        transactionTypeId: 5
       }
       let depositData = {
-        ...req.body,
-        transactionTypeId: 4
+        description: `transference from account: ${account.id}`,
+        amount: total,
+        transactionTypeId: 2
       }
-      const account = req._account
-      // const withdraw = await this.transactionService.withdraw(account, withdrawData)
-      // const deposit = await this.transactionService.withdraw(account, depositData)
+      
+      const withdraw = await this.transactionService.withdraw(account, withdrawData)
+      const deposit = await this.transactionService.deposit(destinationAccount, depositData)
+      transferencePayload.depositId = deposit.id
+      transferencePayload.withdraw = withdraw.id
 
-      const transference = {
-        withdrawData,
-        depositData
-      }
-      return this.response.success(res, transference)
+      return this.response.success(res, transferencePayload)
     } catch (error) {
       console.log(error)
       return this.response.internalServerError(res, error)
