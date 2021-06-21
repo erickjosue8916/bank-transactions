@@ -23,7 +23,7 @@ export class TransactionsRouter implements ApplicationRoute {
     
     router.post('/deposits', this.transactionsValidations.deposit, this.transactionsController.deposit)
     router.post('/withdraws', this.transactionsValidations.withdraw, this.transactionsController.withdraw)
-    router.post('/transfers', this.transactionsValidations.withdraw, this.transactionsController.transfer)
+    router.post('/transfers', this.transactionsValidations.transfer, this.transactionsController.transfer)
     return router
   }
 }
