@@ -4,10 +4,12 @@ import { ApiValidation } from '../../../../repositories/classes'
 import { ITransactionValidation } from './transactions.validations.interface'
 import { TYPES } from '../types'
 import { ITransactionService } from './index'
+import { IAccountService } from '../accounts.service.interface'
 
 @injectable()
 export class TransactionValidations extends ApiValidation implements ITransactionValidation {
   private transactionsService: ITransactionService
+  private accountService: IAccountService
   private requiredFields = {
     deposit: [
       'amount', `description`
@@ -20,9 +22,13 @@ export class TransactionValidations extends ApiValidation implements ITransactio
     ]
   }
 
-  public constructor(@inject(TYPES.TransactionService) transactionsService: ITransactionService) {
+  public constructor(
+    @inject(TYPES.TransactionService) transactionsService: ITransactionService,
+    @inject(TYPES.AccountService) accountService: IAccountService
+  ) {
     super()
     this.transactionsService = transactionsService
+    this.accountService = accountService
   }
 
   public deposit = [
@@ -58,6 +64,13 @@ export class TransactionValidations extends ApiValidation implements ITransactio
     this.onlyMatchData, // remove all data that do not match with validations
   ]
   
+  private destinationTransferExist = async (accountId, {req}) => {
+    const account = await this.accountService.get(accountId)
+    if (!account) throw new Error('Destination account not found')
+    req.destinationAccount = account
+    return true
+  }
+
   public transfer = [
     ...this.checkRequiredData(this.requiredFields.transfer),
     body('accountId').custom(async (_accountId, { req }) => {
@@ -65,6 +78,7 @@ export class TransactionValidations extends ApiValidation implements ITransactio
       if (account.status !== `ACTIVE`) throw new Error("Account is inactive for this moment try later");
       return true
     }),
+    body('toBankAccountId').custom(this.destinationTransferExist),
     body('amount').isNumeric().custom((amount, {req}) => {
       const account = req._account
       if (amount <= 0) throw new Error("Withdraw amount need to be great to 0");
