@@ -16,8 +16,13 @@ export class AccountController extends ApiController implements IAccountControll
     this.accountService = userService
   }
 
-  list = async (_req: Request, res: Response, _next: NextFunction): Promise<Response> => {
-    const result = await this.accountService.list(_req.query)
+  list = async (req: any, res: Response, _next: NextFunction): Promise<Response> => {
+    const customer = req._customer
+    console.log(customer)
+
+    if (!req.query.filter) req.query.filter = {}
+    req.query.filter.customerId = customer.id
+    const result = await this.accountService.list(req.query)
     return res.json(result)
   }
 
@@ -26,9 +31,9 @@ export class AccountController extends ApiController implements IAccountControll
   }
 
   get = async (req: any, res: Response, _next: NextFunction): Promise<Response> => {
-    const { _customer: customer } = req
-    delete customer.password
-    return this.response.success(res, customer)
+    const account = req._account
+    console.log(account)
+    return this.response.success(res, account)
   }
 
   create = async (req: any, res: Response, _next: NextFunction): Promise<Response> => {

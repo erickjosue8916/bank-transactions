@@ -40,7 +40,7 @@ export class Transactions extends BaseEntity{
   @Column("enum", {
     name: "status",
     enum: ["SUCCESS", "DRAFT", "CANCELLED"],
-    default: () => "'DRAFT'",
+    default: () => "'SUCCESS'",
   })
   status: "SUCCESS" | "DRAFT" | "CANCELLED";
 

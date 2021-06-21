@@ -40,9 +40,9 @@ export class CustomerRouter implements ApplicationRoute {
       .put(this.customerController.update)
 
     router
-      .route('/:customerId/accounts')
+      .route('/:customerId/bank-accounts')
+      .get(this.accountsValidations.list, this.accountsController.list)
       .post(this.accountsValidations.create, this.accountsController.create)
-      .get(this.accountsValidations.get, this.accountsController.get)
     return router
   }
 }
