@@ -46,7 +46,8 @@ export class AccountsValidations extends ApiValidation implements IAccountValida
 
   public get = [
     ...this.validateAccess,
-    param(`accountId`).custom(this.exist)
+    param(`accountId`).custom(this.exist),
+    this.validationResponse, // final response errors
   ]
 
   public update = [

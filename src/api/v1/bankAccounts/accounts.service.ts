@@ -5,8 +5,9 @@ import { entities } from '../../../database/bank'
 
 @injectable()
 export class AccountService implements IAccountService {
-  async list(_query: any): Promise<any> {
-    const accounts = await entities.BankAccounts.find()
+  async list(query: any): Promise<any> {
+    console.log(query)
+    const accounts = await entities.BankAccounts.find(query.filter)
     return accounts
   }
 

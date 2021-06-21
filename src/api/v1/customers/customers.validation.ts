@@ -55,7 +55,8 @@ export class CustomerValidations extends ApiValidation implements ICustomerValid
 
   public get = [
     ...this.validateAccess,
-    param(`customerId`).custom(this.exist)
+    param(`customerId`).custom(this.exist),
+    this.validationResponse, // final response errors
   ]
 
   public update = [
