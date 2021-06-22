@@ -36,7 +36,6 @@ export class CustomerValidations extends ApiValidation implements ICustomerValid
     body('dateBirth')
       .isDate({ format: `YYYY-MM-DD` })
       .withMessage(`Format required for date fields: YYYY-MM-DD`),
-
     this.validationResponse, // final response errors
     this.onlyMatchData, // remove all data that do not match with validations
   ]
