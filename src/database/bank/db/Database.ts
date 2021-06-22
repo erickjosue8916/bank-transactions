@@ -2,7 +2,6 @@ import { createConnection, Connection } from 'typeorm'
 import { enums, interfaces } from "../../../repositories";
 import * as models from '../entities'
 
-
 export interface ListQueryOptions {
   filter: any
   page: number
@@ -18,7 +17,7 @@ export class BankDB{
         return models[modelName]
       });
 
-      const connection = createConnection({
+      let options = {
         type: config.driver,
         host: config.host,
         port: config.port,
@@ -28,8 +27,12 @@ export class BankDB{
         entities: [
           ...entities
         ],
+        extra: { socketPath: config.host },
         synchronize: false,
-      })
+      }
+
+      if (process.env.NODE_ENV !== 'development') delete options.extra
+      const connection = createConnection(options)
       return connection
     } catch (error) {
       console.log(error)
