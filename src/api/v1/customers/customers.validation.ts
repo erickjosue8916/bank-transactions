@@ -48,7 +48,7 @@ export class CustomerValidations extends ApiValidation implements ICustomerValid
 
   public exist = async (customerId, { req }) => {
     const customer = await this.customerService.get(customerId)
-    if (!customer) throw new Error('customer not found')
+    if (!customer) throw new Error('customer not found!!!!')
     req._customer = customer
     return true
   }

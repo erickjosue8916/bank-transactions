@@ -19,6 +19,8 @@ export class AuthService implements IAuthService {
 
     if (search.length) {      
         user = search[0]
+    } else {
+      return null
     }
     
     const isCorrectPassword = await bcrypt.compare(password, user.password)
@@ -33,5 +35,4 @@ export class AuthService implements IAuthService {
     }
     return payload
   }
-
 }

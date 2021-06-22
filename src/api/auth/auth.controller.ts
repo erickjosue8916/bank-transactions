@@ -24,7 +24,7 @@ export class AuthController extends ApiController implements IAuthController{
     const { username, password } = req.body
     const user = await this.authService.login(username, password)
 
-    if (!user) return this.response.dataValidationFailed(res, 'User not registered')
+    if (!user) return this.response.dataValidationFailed(res, 'invalid credentials')
 
     const authorization = await Jwt.encode(user)
 
