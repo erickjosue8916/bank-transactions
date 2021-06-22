@@ -1,0 +1,2268 @@
+{
+	"info": {
+		"_postman_id": "b532f903-02dc-4025-9054-68d24e85b999",
+		"name": "TooFinalProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"ejsaravia\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/api/login",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "customers",
+			"item": [
+				{
+					"name": "accounts",
+					"item": [
+						{
+							"name": "AccountList",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers/:customerId/bank-accounts",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										":customerId",
+										"bank-accounts"
+									],
+									"variable": [
+										{
+											"key": "customerId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "AccountList",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{HOST}}/api/v1/customers/:customerId/accounts?page=1&limit=20&id=gt|0&sord=id|asc",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"customers",
+												":customerId",
+												"accounts"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "20"
+												},
+												{
+													"key": "id",
+													"value": "gt|0"
+												},
+												{
+													"key": "sord",
+													"value": "id|asc"
+												}
+											],
+											"variable": [
+												{
+													"key": "customerId",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"items\": [\r\n        {\r\n            \"id\": 1,\r\n            \"balance\": 50,\r\n            \"customerId\": 1,\r\n            \"type\": 1,\r\n            \"status\": \"ACTIVE\"\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"balance\": 50,\r\n            \"customerId\": 1,\r\n            \"type\": 1,\r\n            \"status\": \"ACTIVE\"\r\n        }\r\n    ],\r\n    \"page\": 1,\r\n    \"limit\": 2,\r\n    \"total_items\": 50,\r\n    \"total_pages\": 25\r\n}"
+								}
+							]
+						},
+						{
+							"name": "AccountCreate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"accountTypeId\": 1,\r\n    \"balance\": 5000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers/:customerId/accounts",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										":customerId",
+										"accounts"
+									],
+									"variable": [
+										{
+											"key": "customerId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "AccountCreate success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"type\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/api/v1/customers/:customerId/accounts",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"customers",
+												":customerId",
+												"accounts"
+											],
+											"variable": [
+												{
+													"key": "customerId",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"balance\": 50,\n    \"customerId\": 1,\n    \"type\": 1,\n    \"status\": \"ACTIVE\"\n}"
+								},
+								{
+									"name": "AccountCreate bad params",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"type\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/api/v1/customers/:customerId/accounts",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"customers",
+												":customerId",
+												"accounts"
+											],
+											"variable": [
+												{
+													"key": "customerId",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"body": "{\n    \"status\": 400,\n    \"errors\": [\n        \"invalid bank account type\"\n    ],\n    \"name\": \"Bad request\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "documents",
+					"item": [
+						{
+							"name": "DocumentList",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers/:customerId/documents",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										":customerId",
+										"documents"
+									],
+									"variable": [
+										{
+											"key": "customerId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DocumentList",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{HOST}}/api/v1/customers/:customerId/documents",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"customers",
+												":customerId",
+												"documents"
+											],
+											"variable": [
+												{
+													"key": "customerId",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"items\": [\r\n        {\r\n            \"id\": 1,\r\n            \"customerId\": 1,\r\n            \"type\": 1,\r\n            \"value\": \"12345678\",\r\n            \"url\": \"https://www.domain.com/path/to/resource\"\r\n        },\r\n        {\r\n            \"id\": 1,\r\n            \"customerId\": 1,\r\n            \"type\": 1,\r\n            \"value\": \"12345678\",\r\n            \"url\": \"https://www.domain.com/path/to/resource\"\r\n        }\r\n    ],\r\n    \"page\": 1,\r\n    \"limit\": 2,\r\n    \"total_items\": 50,\r\n    \"total_pages\": 25\r\n}"
+								}
+							]
+						},
+						{
+							"name": "DocumentCreate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": 1,\r\n    \"value\": \"123456789\",\r\n    \"url\": \"https://www.domain.com/path/to/resource\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers/:customerId/documents",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										":customerId",
+										"documents"
+									],
+									"variable": [
+										{
+											"key": "customerId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DocumentCreate",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"type\": 1,\r\n    \"value\": \"123456789\",\r\n    \"url\": \"https://www.domain.com/path/to/resource\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/api/v1/customers/:customerId/documents",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"customers",
+												":customerId",
+												"documents"
+											],
+											"variable": [
+												{
+													"key": "customerId",
+													"value": ""
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"customerId\": 1,\n    \"type\": 1,\n    \"value\": \"12345678\",\n    \"url\": \"https://www.domain.com/path/to/resource\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "CustomerList",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/v1/customers?page=1&limit=20&id=gt|0&sord=id|asc",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "id",
+									"value": "gt|0"
+								},
+								{
+									"key": "sord",
+									"value": "id|asc"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CustomerList",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers?page=1&limit=20&id=gt|0&sord=id|asc",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										},
+										{
+											"key": "id",
+											"value": "gt|0"
+										},
+										{
+											"key": "sord",
+											"value": "id|asc"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"id\": 1,\n            \"firstName\": \"Test\",\n            \"lastName\": \"Customer 1\",\n            \"phoneNumber\": \"71021375\",\n            \"dateBirth\": \"1999-02-08\",\n            \"email\": \"test+1@gmail.com\",\n            \"username\": \"test\",\n            \"password\": \"HASH\",\n            \"createAt\": \"2021-06-05T21:28:32-6:00\"\n        },\n        {\n            \"id\": 2,\n            \"firstName\": \"Test\",\n            \"lastName\": \"Customer 2\",\n            \"phoneNumber\": \"71021375\",\n            \"dateBirth\": \"1999-02-08\",\n            \"email\": \"test+1@gmail.com\",\n            \"username\": \"test\",\n            \"password\": \"HASH\",\n            \"createAt\": \"2021-06-05T21:28:32-6:00\"\n        }\n    ],\n    \"page\": 1,\n    \"limit\": 2,\n    \"total_items\": 50,\n    \"total_pages\": 25\n}"
+						}
+					]
+				},
+				{
+					"name": "CustomerById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/v1/customers/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CustomerList",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers?page=1&limit=20&id=gt|0&sord=id|asc",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										},
+										{
+											"key": "id",
+											"value": "gt|0"
+										},
+										{
+											"key": "sord",
+											"value": "id|asc"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"id\": 1,\n            \"firstName\": \"Test\",\n            \"lastName\": \"Customer 1\",\n            \"phoneNumber\": \"71021375\",\n            \"dateBirth\": \"1999-02-08\",\n            \"email\": \"test+1@gmail.com\",\n            \"username\": \"test\",\n            \"password\": \"HASH\",\n            \"createAt\": \"2021-06-05T21:28:32-6:00\"\n        },\n        {\n            \"id\": 2,\n            \"firstName\": \"Test\",\n            \"lastName\": \"Customer 2\",\n            \"phoneNumber\": \"71021375\",\n            \"dateBirth\": \"1999-02-08\",\n            \"email\": \"test+1@gmail.com\",\n            \"username\": \"test\",\n            \"password\": \"HASH\",\n            \"createAt\": \"2021-06-05T21:28:32-6:00\"\n        }\n    ],\n    \"page\": 1,\n    \"limit\": 2,\n    \"total_items\": 50,\n    \"total_pages\": 25\n}"
+						}
+					]
+				},
+				{
+					"name": "CustomerCreate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Javier Alexander\",\r\n    \"lastName\": \"Morales Melara\",\r\n    \"phoneNumber\": \"71021375\",\r\n    \"dateBirth\": \"1999-02-08\",\r\n    \"email\": \"javier@gmail.com\",\r\n    \"username\": \"jalex\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/customers",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CustomerCreate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Test\",\r\n    \"lastName\": \"Customer 1\",\r\n    \"phoneNumber\": \"71021375\",\r\n    \"dateBirth\": \"1999-02-08\",\r\n    \"email\": \"test+1@gmail.com\",\r\n    \"username\": \"test1\",\r\n    \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"firstName\": \"Test\",\n    \"lastName\": \"Customer 1\",\n    \"phoneNumber\": \"71021375\",\n    \"dateBirth\": \"1999-02-08\",\n    \"email\": \"test+1@gmail.com\",\n    \"username\": \"test1\",\n    \"password\": \"HASH\",\n    \"createAt\": \"2021-06-05T21:28:32-6:00\",\n    \"status\": \"ACTIVE\"\n}"
+						}
+					]
+				},
+				{
+					"name": "CustomerUpdate",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/customers/:customerId",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								":customerId"
+							],
+							"variable": [
+								{
+									"key": "customerId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CustomerUpdate",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers/:customerId",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										":customerId"
+									],
+									"variable": [
+										{
+											"key": "customerId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"firstName\": \"Test\",\n    \"lastName\": \"Customer 1\",\n    \"phoneNumber\": \"71021375\",\n    \"dateBirth\": \"1999-02-08\",\n    \"email\": \"test+1@gmail.com\",\n    \"username\": \"test1\",\n    \"password\": \"HASH\",\n    \"createAt\": \"2021-06-05T21:28:32-6:00\",\n    \"status\": \"ACTIVE\"\n}"
+						},
+						{
+							"name": "CustomerUpdate error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers/:customerId",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										":customerId"
+									],
+									"variable": [
+										{
+											"key": "customerId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"errors\": [\n        \"password need to have 8 digits\"\n    ],\n    \"name\": \"Bad request\"\n}"
+						}
+					]
+				},
+				{
+					"name": "CustomerDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/v1/customers/:customerId",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								":customerId"
+							],
+							"variable": [
+								{
+									"key": "customerId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CustomerDelete success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers/:customerId",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										":customerId"
+									],
+									"variable": [
+										{
+											"key": "customerId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "accounts",
+					"item": [
+						{
+							"name": "AccountList",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers/:customerId/accounts?page=1&limit=20&id=gt|0&sord=id|asc",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										":customerId",
+										"accounts"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										},
+										{
+											"key": "id",
+											"value": "gt|0"
+										},
+										{
+											"key": "sord",
+											"value": "id|asc"
+										}
+									],
+									"variable": [
+										{
+											"key": "customerId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "AccountList",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{HOST}}/api/v1/customers/:customerId/accounts?page=1&limit=20&id=gt|0&sord=id|asc",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"customers",
+												":customerId",
+												"accounts"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "20"
+												},
+												{
+													"key": "id",
+													"value": "gt|0"
+												},
+												{
+													"key": "sord",
+													"value": "id|asc"
+												}
+											],
+											"variable": [
+												{
+													"key": "customerId",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"items\": [\r\n        {\r\n            \"id\": 1,\r\n            \"balance\": 50,\r\n            \"customerId\": 1,\r\n            \"type\": 1,\r\n            \"status\": \"ACTIVE\"\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"balance\": 50,\r\n            \"customerId\": 1,\r\n            \"type\": 1,\r\n            \"status\": \"ACTIVE\"\r\n        }\r\n    ],\r\n    \"page\": 1,\r\n    \"limit\": 2,\r\n    \"total_items\": 50,\r\n    \"total_pages\": 25\r\n}"
+								}
+							]
+						},
+						{
+							"name": "AccountCreate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"accountTypeId\": 1,\r\n    \"balance\": 25\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers/:customerId/accounts",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										":customerId",
+										"accounts"
+									],
+									"variable": [
+										{
+											"key": "customerId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "AccountCreate success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"type\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/api/v1/customers/:customerId/accounts",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"customers",
+												":customerId",
+												"accounts"
+											],
+											"variable": [
+												{
+													"key": "customerId",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"balance\": 50,\n    \"customerId\": 1,\n    \"type\": 1,\n    \"status\": \"ACTIVE\"\n}"
+								},
+								{
+									"name": "AccountCreate bad params",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"type\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/api/v1/customers/:customerId/accounts",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"customers",
+												":customerId",
+												"accounts"
+											],
+											"variable": [
+												{
+													"key": "customerId",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"body": "{\n    \"status\": 400,\n    \"errors\": [\n        \"invalid bank account type\"\n    ],\n    \"name\": \"Bad request\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "documents",
+					"item": [
+						{
+							"name": "DocumentList",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers/:customerId/documents",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										":customerId",
+										"documents"
+									],
+									"variable": [
+										{
+											"key": "customerId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DocumentList",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{HOST}}/api/v1/customers/:customerId/documents",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"customers",
+												":customerId",
+												"documents"
+											],
+											"variable": [
+												{
+													"key": "customerId",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"body": "{\r\n    \"items\": [\r\n        {\r\n            \"id\": 1,\r\n            \"customerId\": 1,\r\n            \"type\": 1,\r\n            \"value\": \"12345678\",\r\n            \"url\": \"https://www.domain.com/path/to/resource\"\r\n        },\r\n        {\r\n            \"id\": 1,\r\n            \"customerId\": 1,\r\n            \"type\": 1,\r\n            \"value\": \"12345678\",\r\n            \"url\": \"https://www.domain.com/path/to/resource\"\r\n        }\r\n    ],\r\n    \"page\": 1,\r\n    \"limit\": 2,\r\n    \"total_items\": 50,\r\n    \"total_pages\": 25\r\n}"
+								}
+							]
+						},
+						{
+							"name": "DocumentCreate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": 1,\r\n    \"value\": \"123456789\",\r\n    \"url\": \"https://www.domain.com/path/to/resource\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers/:customerId/documents",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										":customerId",
+										"documents"
+									],
+									"variable": [
+										{
+											"key": "customerId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "DocumentCreate",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"type\": 1,\r\n    \"value\": \"123456789\",\r\n    \"url\": \"https://www.domain.com/path/to/resource\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/api/v1/customers/:customerId/documents",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"customers",
+												":customerId",
+												"documents"
+											],
+											"variable": [
+												{
+													"key": "customerId",
+													"value": ""
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"customerId\": 1,\n    \"type\": 1,\n    \"value\": \"12345678\",\n    \"url\": \"https://www.domain.com/path/to/resource\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "UserList",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/v1/customers?page=1&limit=20&id=gt|0&sord=id|asc",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "id",
+									"value": "gt|0"
+								},
+								{
+									"key": "sord",
+									"value": "id|asc"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CustomerList",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers?page=1&limit=20&id=gt|0&sord=id|asc",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										},
+										{
+											"key": "id",
+											"value": "gt|0"
+										},
+										{
+											"key": "sord",
+											"value": "id|asc"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"id\": 1,\n            \"firstName\": \"Test\",\n            \"lastName\": \"Customer 1\",\n            \"phoneNumber\": \"71021375\",\n            \"dateBirth\": \"1999-02-08\",\n            \"email\": \"test+1@gmail.com\",\n            \"username\": \"test\",\n            \"password\": \"HASH\",\n            \"createAt\": \"2021-06-05T21:28:32-6:00\"\n        },\n        {\n            \"id\": 2,\n            \"firstName\": \"Test\",\n            \"lastName\": \"Customer 2\",\n            \"phoneNumber\": \"71021375\",\n            \"dateBirth\": \"1999-02-08\",\n            \"email\": \"test+1@gmail.com\",\n            \"username\": \"test\",\n            \"password\": \"HASH\",\n            \"createAt\": \"2021-06-05T21:28:32-6:00\"\n        }\n    ],\n    \"page\": 1,\n    \"limit\": 2,\n    \"total_items\": 50,\n    \"total_pages\": 25\n}"
+						}
+					]
+				},
+				{
+					"name": "UserCreate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/users",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CustomerCreate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Test\",\r\n    \"lastName\": \"Customer 1\",\r\n    \"phoneNumber\": \"71021375\",\r\n    \"dateBirth\": \"1999-02-08\",\r\n    \"email\": \"test+1@gmail.com\",\r\n    \"username\": \"test1\",\r\n    \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"firstName\": \"Test\",\n    \"lastName\": \"Customer 1\",\n    \"phoneNumber\": \"71021375\",\n    \"dateBirth\": \"1999-02-08\",\n    \"email\": \"test+1@gmail.com\",\n    \"username\": \"test1\",\n    \"password\": \"HASH\",\n    \"createAt\": \"2021-06-05T21:28:32-6:00\",\n    \"status\": \"ACTIVE\"\n}"
+						}
+					]
+				},
+				{
+					"name": "CustomerUpdate",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/customers/:customerId",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								":customerId"
+							],
+							"variable": [
+								{
+									"key": "customerId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CustomerUpdate",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers/:customerId",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										":customerId"
+									],
+									"variable": [
+										{
+											"key": "customerId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"firstName\": \"Test\",\n    \"lastName\": \"Customer 1\",\n    \"phoneNumber\": \"71021375\",\n    \"dateBirth\": \"1999-02-08\",\n    \"email\": \"test+1@gmail.com\",\n    \"username\": \"test1\",\n    \"password\": \"HASH\",\n    \"createAt\": \"2021-06-05T21:28:32-6:00\",\n    \"status\": \"ACTIVE\"\n}"
+						},
+						{
+							"name": "CustomerUpdate error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers/:customerId",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										":customerId"
+									],
+									"variable": [
+										{
+											"key": "customerId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"errors\": [\n        \"password need to have 8 digits\"\n    ],\n    \"name\": \"Bad request\"\n}"
+						}
+					]
+				},
+				{
+					"name": "CustomerDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/v1/customers/:customerId",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								":customerId"
+							],
+							"variable": [
+								{
+									"key": "customerId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CustomerDelete success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers/:customerId",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										":customerId"
+									],
+									"variable": [
+										{
+											"key": "customerId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "transactions",
+			"item": [
+				{
+					"name": "createDeposit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/accounts/:acountId/deposits",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								":acountId",
+								"deposits"
+							],
+							"variable": [
+								{
+									"key": "acountId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listTransactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/v1/accounts/:acountId/transactions",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								":acountId",
+								"transactions"
+							],
+							"variable": [
+								{
+									"key": "acountId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createWithdraw",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/v1/accounts/:acountId/withdraws",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								":acountId",
+								"withdraws"
+							],
+							"variable": [
+								{
+									"key": "acountId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "application",
+			"item": [
+				{
+					"name": "TYPES",
+					"item": [
+						{
+							"name": "TransactionTypesList",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/settings/types/transactions",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"settings",
+										"types",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DocumentTypesList",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/types/documents",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"types",
+										"documents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AccountTypeList",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/types/accounts",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"types",
+										"accounts"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "bankAccounts",
+			"item": [
+				{
+					"name": "deposits",
+					"item": [
+						{
+							"name": "depostisList",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers?page=1&limit=20&id=gt|0&sord=id|asc",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										},
+										{
+											"key": "id",
+											"value": "gt|0"
+										},
+										{
+											"key": "sord",
+											"value": "id|asc"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "depositLists success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{HOST}}/api/v1/customers?page=1&limit=20&id=gt|0&sord=id|asc",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"customers"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "20"
+												},
+												{
+													"key": "id",
+													"value": "gt|0"
+												},
+												{
+													"key": "sord",
+													"value": "id|asc"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"body": "{\n    \"items\": [\n        {\n            \"id\": 1,\n            \"bankAccountId\": 1,\n            \"transactionReferenceId\": null,\n            \"type\": \"CREDIT\",\n            \"amount\": 15,\n            \"balance\": 75,\n            \"status\": \"FINALIZED\",\n            \"createAt\": \"2021-06-06T05:25:00\",\n            \"transactionTypeId\": 1\n        }\n    ],\n    \"page\": 1,\n    \"limit\": 1,\n    \"total_items\": 50,\n    \"total_pages\": 50\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "witdraw",
+					"item": [
+						{
+							"name": "witdrawList",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers?page=1&limit=20&id=gt|0&sord=id|asc",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										},
+										{
+											"key": "id",
+											"value": "gt|0"
+										},
+										{
+											"key": "sord",
+											"value": "id|asc"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "WithdrawList",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{HOST}}/api/v1/transactions/deposits?page=1&limit=20&id=gt|0&sord=id|asc",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"transactions",
+												"deposits"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "20"
+												},
+												{
+													"key": "id",
+													"value": "gt|0"
+												},
+												{
+													"key": "sord",
+													"value": "id|asc"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"body": "{\n    \"items\": [\n        {\n            \"id\": 2,\n            \"bankAccountId\": 2,\n            \"transactionReferenceId\": null,\n            \"type\": \"DEBIT\",\n            \"amount\": 15,\n            \"balance\": 75,\n            \"status\": \"FINALIZED\",\n            \"createAt\": \"2021-06-06T05:25:00\",\n            \"transactionTypeId\": 1\n        }\n    ],\n    \"page\": 1,\n    \"limit\": 1,\n    \"total_items\": 50,\n    \"total_pages\": 50\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "transffers",
+					"item": [
+						{
+							"name": "transfersList",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers?page=1&limit=20&id=gt|0&sord=id|asc",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										},
+										{
+											"key": "id",
+											"value": "gt|0"
+										},
+										{
+											"key": "sord",
+											"value": "id|asc"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "transfersList",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{HOST}}/api/v1/transactions/deposits?page=1&limit=20&id=gt|0&sord=id|asc",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"transactions",
+												"deposits"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "20"
+												},
+												{
+													"key": "id",
+													"value": "gt|0"
+												},
+												{
+													"key": "sord",
+													"value": "id|asc"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"body": "{\n    \"items\": [\n        {\n            \"id\": 2,\n            \"fromAccountId\": 1,\n            \"toAccountId\": 2,\n            \"amount\": 20,\n            \"charge\": 12,\n            \"witdrawId\": 1,\n            \"depositId\": 2,\n            \"createdAt\": \"\",\n            \"status\": \"COMPLETED\",\n            \"redundedAmount\": 0,\n            \"\"\n        }\n    ],\n    \"page\": 1,\n    \"limit\": 1,\n    \"total_items\": 50,\n    \"total_pages\": 50\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "listBankAccounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/v1/bank-accounts",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bank-accounts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "listBankAccounts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/accounts?page=1&limit=20&id=gt|0&sord=id|asc",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"accounts"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										},
+										{
+											"key": "id",
+											"value": "gt|0"
+										},
+										{
+											"key": "sord",
+											"value": "id|asc"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"id\": 1,\n            \"customerId\": 1,\n            \"typeId\": 1,\n            \"balance\": 50,\n            \"email\": \"test+1@gmail.com\",\n            \"status\": \"ACTIVE\",\n            \"createAt\": \"2021-06-05T21:28:32-6:00\"\n        },\n        {\n            \"id\": 1,\n            \"customerId\": 1,\n            \"typeId\": 1,\n            \"balance\": 50,\n            \"email\": \"test+1@gmail.com\",\n            \"status\": \"ACTIVE\",\n            \"createAt\": \"2021-06-05T21:28:32-6:00\"\n        },\n    ],\n    \"page\": 1,\n    \"limit\": 2,\n    \"total_items\": 50,\n    \"total_pages\": 25\n}"
+						}
+					]
+				},
+				{
+					"name": "getTransaction By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/v1/bank-accounts/:accountId",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bank-accounts",
+								":accountId"
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "listBankAccounts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/accounts?page=1&limit=20&id=gt|0&sord=id|asc",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"accounts"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										},
+										{
+											"key": "id",
+											"value": "gt|0"
+										},
+										{
+											"key": "sord",
+											"value": "id|asc"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"id\": 1,\n            \"customerId\": 1,\n            \"typeId\": 1,\n            \"balance\": 50,\n            \"email\": \"test+1@gmail.com\",\n            \"status\": \"ACTIVE\",\n            \"createAt\": \"2021-06-05T21:28:32-6:00\"\n        },\n        {\n            \"id\": 1,\n            \"customerId\": 1,\n            \"typeId\": 1,\n            \"balance\": 50,\n            \"email\": \"test+1@gmail.com\",\n            \"status\": \"ACTIVE\",\n            \"createAt\": \"2021-06-05T21:28:32-6:00\"\n        },\n    ],\n    \"page\": 1,\n    \"limit\": 2,\n    \"total_items\": 50,\n    \"total_pages\": 25\n}"
+						}
+					]
+				},
+				{
+					"name": "withdrawCreate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 10,\r\n    \"description\": \"withdraw test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/bank-accounts/:id/withdraws",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bank-accounts",
+								":id",
+								"withdraws"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "WithdrawCreate success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/customers?page=1&limit=20&id=gt|0&sord=id|asc",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										},
+										{
+											"key": "id",
+											"value": "gt|0"
+										},
+										{
+											"key": "sord",
+											"value": "id|asc"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"bankAccountId\": 1,\n    \"transactionReferenceId\": null,\n    \"type\": \"DEBIT\",\n    \"amount\": 15,\n    \"balance\": 75,\n    \"status\": \"FINALIZED\",\n    \"createAt\": \"2021-06-06T05:25:00\",\n    \"transactionTypeId\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "depostisCreate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 45,\r\n    \"description\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/bank-accounts/:id/deposits",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bank-accounts",
+								":id",
+								"deposits"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "depostisCreate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\": 45,\r\n    \"transactionTypeId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/transactions/deposits",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transactions",
+										"deposits"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 1,\r\n    \"bankAccountId\": 1,\r\n    \"transactionReferenceId\": null,\r\n    \"type\": \"CREDIT\",\r\n    \"amount\": 15,\r\n    \"balance\": 75,\r\n    \"status\": \"FINALIZED\",\r\n    \"createAt\": \"2021-06-06T05:25:00\",\r\n    \"transactionTypeId\": 1\r\n}"
+						}
+					]
+				},
+				{
+					"name": "transferCreate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 1000,\r\n    \"description\": \"test transafer\",\r\n    \"toBankAccountId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/bank-accounts/:id/transfers",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bank-accounts",
+								":id",
+								"transfers"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "depostisCreate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\": 45,\r\n    \"transactionTypeId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/transactions/deposits",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transactions",
+										"deposits"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 1,\r\n    \"bankAccountId\": 1,\r\n    \"transactionReferenceId\": null,\r\n    \"type\": \"CREDIT\",\r\n    \"amount\": 15,\r\n    \"balance\": 75,\r\n    \"status\": \"FINALIZED\",\r\n    \"createAt\": \"2021-06-06T05:25:00\",\r\n    \"transactionTypeId\": 1\r\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

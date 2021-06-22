@@ -36,9 +36,30 @@ export class TransactionService implements ITransactionService {
     await account.save()
     return transaction
   }
-  async transfer(_account, _payload) {
+  async transfer(account, destinationAccount, data) {
+    const transference = new entities.Transference()
+    
+    let withdrawData = {
+      description: `transference to account: ${destinationAccount.id}`,
+      amount: data.total,
+      transactionTypeId: 5
+    }
+    let depositData = {
+      description: `transference from account: ${account.id}`,
+      amount: data.total,
+      transactionTypeId: 2
+    }
+    
+    const withdraw = await this.withdraw(account, withdrawData)
+    const deposit = await this.deposit(destinationAccount, depositData)
+    data.depositId = deposit.id
+    data.withdrawId = withdraw.id
 
+    Object.assign(transference, data)
+    await transference.save()
+    return transference
   }
+
   async list(_query) {
 
   }

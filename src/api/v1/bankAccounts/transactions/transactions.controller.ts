@@ -56,9 +56,8 @@ export class TransactionController extends ApiController implements ITransaction
       if (account.customerId  !== destinationAccount.customerId) {
         charge = Number((data.amount / 100 * percentageCharge).toFixed(2))
       }
-      
-      const total = data.amount + charge
 
+      const total = data.amount + charge
       // WITHDRAW ID
       let transferencePayload = {
         ...data,
@@ -66,23 +65,10 @@ export class TransactionController extends ApiController implements ITransaction
         charge,
         total
       }
-      let withdrawData = {
-        description: `transference to account: ${destinationAccount.id}`,
-        amount: total,
-        transactionTypeId: 5
-      }
-      let depositData = {
-        description: `transference from account: ${account.id}`,
-        amount: total,
-        transactionTypeId: 2
-      }
       
-      const withdraw = await this.transactionService.withdraw(account, withdrawData)
-      const deposit = await this.transactionService.deposit(destinationAccount, depositData)
-      transferencePayload.depositId = deposit.id
-      transferencePayload.withdraw = withdraw.id
 
-      return this.response.success(res, transferencePayload)
+      const transference = await this.transactionService.transfer(account, destinationAccount, transferencePayload)
+      return this.response.success(res, transference)
     } catch (error) {
       console.log(error)
       return this.response.internalServerError(res, error)
